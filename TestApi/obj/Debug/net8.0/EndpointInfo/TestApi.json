@@ -1,0 +1,87 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "TestApi",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/Candidates": {
+      "post": {
+        "tags": [
+          "Candidates"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "Email",
+                  "FirstName",
+                  "LastName",
+                  "PhoneNumber",
+                  "Resume"
+                ],
+                "type": "object",
+                "properties": {
+                  "FirstName": {
+                    "type": "string"
+                  },
+                  "LastName": {
+                    "type": "string"
+                  },
+                  "Email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "PhoneNumber": {
+                    "type": "string"
+                  },
+                  "Skills": {
+                    "type": "string"
+                  },
+                  "Resume": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "ProfilePhoto": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "FirstName": {
+                  "style": "form"
+                },
+                "LastName": {
+                  "style": "form"
+                },
+                "Email": {
+                  "style": "form"
+                },
+                "PhoneNumber": {
+                  "style": "form"
+                },
+                "Skills": {
+                  "style": "form"
+                },
+                "Resume": {
+                  "style": "form"
+                },
+                "ProfilePhoto": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": { }
+}
