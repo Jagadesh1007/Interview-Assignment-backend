@@ -1,0 +1,87 @@
+# Visual Studio and .NET
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Bb]in/
+[Oo]bj/
+**/bin/
+**/obj/
+
+# Rider
+.idea/
+*.sln.iml
+
+# VS Code
+.vscode/
+
+# NuGet
+*.nupkg
+packages/
+.nuget/
+
+# Publish output
+publish/
+artifacts/
+
+# Logs
+*.log
+TestResults/
+*.trx
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.tmp
+*.temp
+~$*
+
+# User-specific and sensitive files
+*.user
+*.credentials
+*.p12
+*.pfx
+
+# Database files
+*.db
+*.mdf
+*.ldf
+
+# Coverage, profiling
+*.coverage
+*.coveragexml
+*.prof
+*.trace
+*.vsp
+*.vsix
+
+# Resharper
+_ReSharper*/
+*.ReSharper
+
+# Rider caches
+.idea/
+
+# Node
+node_modules/
+
+# Ignore uploaded files and runtime content
+/Uploads/
+
+# Ignore build artifacts created by IDE or dotnet
+project.lock.json
+project.fragment.lock.json
+
+# Ignore temporary generated project files in temp folders
+*.tmp_proj
+
+# End of file
+# Build folders
+bin/
+obj/
