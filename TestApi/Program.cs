@@ -1,23 +1,65 @@
+using System.Diagnostics;
+using TestApi.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Run API on localhost:8080
+builder.WebHost.UseUrls("http://localhost:8080");
 
+// Services
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+// Dependency Injection
+builder.Services.AddScoped<ICandidateService, CandidateService>();
+
+// Allow all CORS requests (Development/Assignment only)
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+// Swagger
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.MapOpenApi();
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Test API V1");
+    c.RoutePrefix = string.Empty;
+});
 
-app.UseHttpsRedirection();
+// IMPORTANT: DO NOT USE HTTPS REDIRECTION
+// app.UseHttpsRedirection();
+
+app.UseCors("AllowAll");
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+// Open Swagger automatically
+if (app.Environment.IsDevelopment())
+{
+    try
+    {
+        Process.Start(new ProcessStartInfo
+        {
+            FileName = "http://localhost:8080",
+            UseShellExecute = true
+        });
+    }
+    catch
+    {
+        // Ignore browser launch failures
+    }
+}
 
 app.Run();
